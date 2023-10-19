@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+</head>
+ <style>
+    body{
+        background: black;
+               
+            }
+            .dashcontainer{
+                display: flex;
+                width: 100vh;
+                height: 15vh ;
+                background: white;
+                margin:auto;
+                border-radius:5vh;
+                align-items: center;
+                justify-content: center;
+                margin: 30px;
+                border-color:blue;
+              }
+.col-sm
+{
+background: white;
+width:90vh;
+height: 90vh;
+border-radius: 4vh;
+margin-right: 5vh;
+border-color:blue;
+}
+.section1
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container
+{
+    width: 100%;
+   
+}
+.main
+{
+    width:100%;
+}
+ </style         
+<body>
+    <div class="main">
+        <div class="section1">
+    <div class="dashcontainer">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% for fields in form %}
+             {{fields.label_tag}}
+             {{fields}}
+             {% endfor %}
+             <button type="submit">submit</button>
+          </form> 
+    </div>
+</div>
+        <div class="container">
+            <div class="row">
+              <div class="col-sm">
+                <canvas id="myChart"></canvas>
+              </div>
+              <div class="col-sm" >
+                <canvas id="myChartPie"></canvas>
+              </div>
+            </div>
+
+</div>
+   {% comment %} <div id="dashboard">
+        <h1>Dashboard</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% for fields in form %}
+             {{fields.label_tag}}
+             {{fields}}
+             {% endfor %}
+             <button type="submit">submit</button>
+          </form>   
+
+ <div id="container" style="width:50%">
+        <canvas id="myChart"></canvas>
+    </div> 
+    <div id="container-2" style="width:25%">
+        <canvas id="myChartPie"></canvas>
+    </div>  {% endcomment %}
+
+
+</body>
+
+<script >
+
+   const ctx = document.getElementById('myChart');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{label1|safe}},
+            datasets: [{
+                label: 'child disease',
+                data: {{data1|safe}},
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+            
+        }
+    });  
+    const cty = document.getElementById('myChartPie');
+    const myChartPie = new Chart(cty, {
+        type: 'pie',
+        data : {
+            labels: {{label|safe}},
+            datasets: [{
+              label: 'child disease',
+              data: {{data|safe}},
+              backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 205, 86)',
+                'green'
+              ]
+            }],
+            options:{
+                responsive:true,
+                maintainAspectRatio:false,
+               
+            }
+        }
+    });
+
+</script>
+</html>

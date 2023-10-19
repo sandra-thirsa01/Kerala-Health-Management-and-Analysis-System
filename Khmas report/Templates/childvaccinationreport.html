@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS only -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<style>
+body{
+    background:black
+}
+    #dashboard
+    {
+        background-color: white;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+</style>
+<body>
+<div id="dashboard" >
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for fields in form %}
+         {{fields.label_tag}}
+         {{fields}}
+         {% endfor %}
+         <button type="submit">submit</button>
+      </form>   
+
+ <div id="container" style="width:50%">
+        <canvas id="myChart"></canvas>
+    </div> 
+</body>
+
+<script >
+
+    const cty = document.getElementById('myChart');
+    const myChart = new Chart(cty, {
+        type: 'line',
+        data : {
+            labels: {{label|safe}},
+            datasets: [{
+              label: "vaccine",
+              data: {{data|safe}},
+              fill: true,
+              borderColor: 'rgb(75, 192, 192)',
+            }],
+            options:{
+                responsive:true,
+                }
+            }
+    });
+
+</script>
+</html>
