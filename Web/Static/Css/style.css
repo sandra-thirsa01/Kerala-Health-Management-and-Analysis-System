@@ -1,0 +1,65 @@
+*
+{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+html,body
+{
+    display: grid;
+    height: 100%;
+    place-items: center;
+}
+.loginbox
+{
+    width:380px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+    height: 400px;
+   
+}
+.title
+{
+    line-height: 100px;
+    background: rgba(170, 170, 232, 0.777);
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 100px;
+    color: #fff;
+    border-radius: 15px 15px 0px 0px;
+    margin-bottom: 20px;
+}
+label
+{
+
+    display:block;
+    margin-bottom: 15px;
+}
+.form-control
+{
+    padding:10px;
+
+}
+button{
+    width: 50%;
+    height: 50px;
+    margin-top: 20px;
+    width:100%;
+    background: rgba(167, 167, 237, 0.927);
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 20px;
+}
+input
+{
+    height: 40px;
+    width: 100%;
+    border-radius: 10px;
+
+}
+button:hover
+{
+    background: #fff;
+}
